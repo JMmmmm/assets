@@ -313,7 +313,7 @@ class HomePage extends React.Component{
                 {/*</Row>*/}
 
                 <Row>
-                    <Col lg={12} md={12}>
+                    <Col lg={10} md={10}>
                         <Carousel
                             // activeIndex={index}
                             className={'vertical'}
