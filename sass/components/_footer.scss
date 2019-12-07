@@ -1,0 +1,33 @@
+.table-footer th, .table-footer td {
+  border-top: none !important;
+}
+
+.footer {
+  position: relative;
+  bottom: 0;
+  width: 100%;
+  color: white;
+
+  .navbar {
+    margin-bottom: 0;
+    background-image: linear-gradient(to bottom, #000000, #3e1521, #7a1937, #bb154a, #ff0059);
+    border: none;
+  }
+  
+  a{
+    &:hover{
+      text-decoration: underline;
+      color: #333;
+    }
+  }
+}
+
+.copyright-height{
+  margin-top: 20px;
+  min-height: 40px;
+}
+
+.dark_site-style{
+  font-weight: 600;
+  color: black !important;
+}

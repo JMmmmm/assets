@@ -1,0 +1,70 @@
+.checkout-title{
+  margin-left: 10%;
+
+
+}
+
+.checkout-items-listgroup{
+  li{
+    border: none !important;
+    margin-left: 15%;
+  }
+}
+
+.checkout-quantity{
+  width: 40px !important;
+  display: inline !important;
+}
+
+.checkout-price-div{
+  //margin-left: -80px !important;
+  //margin-top: 10%;
+}
+
+.empty-checkout-size{
+  font-size: 100px;
+}
+
+.promo-successfully-applied{
+  color: blue;
+}
+
+.order-confirmation{
+  color: #21292e;
+}
+
+.panel-body {
+  background-color: gray;
+}
+
+.continue-shopping-btn{
+  background-color: black;
+}
+
+.do-payment{
+  color: black;
+  margin-right: 12px;
+}
+
+.radio-pay{
+  display: block !important;
+  text-align: left;
+  margin-bottom: 15px;
+  margin-top: 15px;
+  margin-left: 10px;
+}
+
+.payment-yandex-symbol{
+  font-size: 20px !important;
+  top: -4px !important;
+}
+
+.do-payment-submit{
+  color: black;
+  background-color: transparent;
+  border: none;
+}
+
+.has-feedback label ~ .form-control-feedback {
+  top: 32px !important;
+}

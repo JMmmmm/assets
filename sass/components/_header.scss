@@ -1,0 +1,486 @@
+.main-mega-style {
+  //background-color: white;
+  //margin-bottom: 120px;
+
+  //fixed header
+  position: fixed !important;
+  top: 0;
+  z-index: 1000;
+  //height: 50px;
+  width: 100%;
+  font-size: 20px;
+
+  //font-style: italic;
+
+  height: 50px;
+  margin-bottom: 20px !important;
+  //background: #C94A4A; /* Для браузеров, которые не поддерживают градиенты */
+  //background: -webkit-linear-gradient(left, #C94A4A 30%, #F2C14E 70%, #4D9078); /* Для Safari 5.1 - 6.0 */
+  //background: -o-linear-gradient(left, #C94A4A 30%, #F2C14E 70%, #4D9078); /* Для Opera 11.1 - 12.0 */
+  //background: -moz-linear-gradient(left, #C94A4A 30%, #F2C14E 70%, #4D9078); /* Для Firefox 3.6 - 15 */
+  //background: linear-gradient(left, #C94A4A 30%, #F2C14E 70%, #4D9078); /* Стандартный синтаксис */
+
+  //black
+  color: #fff !important;
+  background-color: black !important;
+  //background-color: rgba(0, 0, 0, 0.4) !important;
+  //background-color: #2A363B !important;
+  //background-size: cover;
+  //background-image: url('/storage/site/banner.jpg');
+  //background-repeat: no-repeat; /* Do not repeat the image */
+  letter-spacing: 0.3px;
+  //font-family: 'Open Sans Condensed', sans-serif !important;
+
+
+  border: none !important;
+}
+
+.main-mega-style-under{
+  top: 50px !important;
+}
+
+// ДЛЯ КАТЕГОРИЙ
+//.navbar-default .navbar-nav > li > a:focus {
+//  background-color: antiquewhite !important;
+//}
+
+
+@media(min-width:767px) {
+  .menu-items-style {
+    margin-left: 1% !important;
+  }
+  .display-header-right{
+    display: inline-flex;
+    margin-right: -6%;
+    margin-top: -5px;
+    float: right !important;
+  }
+
+  @-moz-document url-prefix() {
+    .display-header-right {
+      margin-top: -105px !important;
+    }
+  }
+
+  .shopping-cart-and-user{
+    position: relative;
+    top: -11px !important;
+  }
+
+  .button-close-symbol {
+    top: -25px !important;
+  }
+
+  //.container > .navbar-header, .container-fluid > .navbar-header, .container > .navbar-collapse, .container-fluid > .navbar-collapse{
+  //  margin-left: -50px !important;
+  //}
+
+  .home-page-div{
+    padding-top: 20px;
+  }
+
+  .link-to-home-div {
+    margin-left: 120% !important;
+  }
+}
+
+@media(min-width:992px) {
+  .shopping-cart-and-user{
+    top: -17px !important;
+  }
+
+  .button-close-symbol {
+    left: 85px;
+    top: -34px !important;
+  }
+
+  .search-down{
+    margin-top: 1% !important;
+  }
+
+  .link-to-home-div{
+    margin-left: 150% !important;
+  }
+}
+
+@media(max-width:992px) {
+  //.display-header-right {
+  //  float: none !important;
+  //  margin-right: 0 !important;
+  //}
+  //.img-brand {
+  //  margin-left: -50px;
+  //}
+
+  .main-mega-style {
+    font-size: 14px;
+  }
+
+  .to_main_style{
+    margin-top: 14px !important;
+  }
+}
+
+@media(max-width:767px) {
+  .phone-number{
+    margin-left: 40%;
+    font-size: 18px !important;
+    margin-top: 9px !important;
+  }
+
+  .button-close-symbol {
+    position: relative !important;
+    left: 40% !important;
+    top: -34px !important;
+  }
+
+  .main-mega-style{
+    .navbar-collapse.in {
+      overflow-y: hidden;
+      overflow-x: hidden;
+    }
+  }
+
+  .dropdown-menu-vertical-design{
+    //max-width: 100%;
+    //min-width: 100%;
+    overflow-x: hidden;
+    background-color: transparent;
+    width: 104%;
+    transition: all 1s;
+    .search-down{
+      transition: all 1s;
+      .navbar-form{
+        border: none;
+        .input-group{
+          width: 100%;
+        }
+      }
+    }
+  }
+}
+
+.phone-number{
+  color: white;
+  position: absolute;
+  //top: 10px;
+  font-size: 25px;
+  margin-top: 3px;
+}
+
+.btn .custom-cart-badge{
+  top: -8px !important;
+}
+
+.custom-cart-badge{
+   padding: 3px 5px !important;
+   font-size: 10px !important;
+   background-color: black !important;
+   border-radius: 14px !important;
+ }
+
+.cart-symbol-size{
+  font-size: 1.2em;
+}
+
+.icon-menu{
+  margin-left: -6%;
+}
+
+.search-down{
+  margin-top: 2%;
+}
+
+.button-size{
+  margin-top: -2%;
+  //font-size: 22px;
+  margin-right: 1%;
+}
+
+.form-control{
+  width: 50%;
+  //margin-left: 43%;
+  height: 45px;
+  font-size: 22px;
+  //margin-top: -0.5%;
+  border: 0;
+}
+
+.fix-size {
+  font-style: normal;
+}
+
+.control-size-default-onclick{
+  position: relative !important;
+  .button-search-symbol {
+    display: none !important;
+  }
+  .input-group {
+    .search-form-text {
+      display: inline-block !important;
+    }
+  }
+  .button-close-symbol {
+    display: inline-block !important;
+  }
+}
+
+.control-size-default {
+  cursor: pointer;
+  position: relative !important;
+  margin-right: 10px;
+  top: 3px;
+}
+
+.transition-addition{
+  transition: all 1s;
+}
+
+//.button-search {
+//  background-color: #323232 !important;
+//  border-color: #323232 !important;
+//  border-radius: 75px !important;
+//  border: none;
+//  outline: none;
+//}
+
+.button-search-symbol {
+  color: white;
+  font-size: 20px;
+  position: absolute;
+}
+
+.button-close-symbol {
+  font-size: 15px;
+  color: #9c9b9f;
+  display: none !important;
+  cursor: pointer;
+  left: 80px;
+  z-index: 100;
+}
+
+.search-form-text {
+  border: none;
+  outline: none;
+  display: none !important;
+  background-color: #21292e !important;
+  margin-left: 0;
+  border-color: #323232 !important;
+  border-radius: 75px !important;
+  color: #9c9b9f !important;
+  font-size: 14px !important;
+  //position: absolute;
+  //
+  //background: #C94A4A; /* Для браузеров, которые не поддерживают градиенты */
+  //background: -webkit-linear-gradient(left, #C94A4A 30%, #F2C14E 70%, #4D9078); /* Для Safari 5.1 - 6.0 */
+  //background: -o-linear-gradient(left, #C94A4A 30%, #F2C14E 70%, #4D9078); /* Для Opera 11.1 - 12.0 */
+  //background: -moz-linear-gradient(left, #C94A4A 30%, #F2C14E 70%, #4D9078); /* Для Firefox 3.6 - 15 */
+  //background: linear-gradient(left, #C94A4A 30%, #F2C14E 70%, #4D9078); /* Стандартный синтаксис */
+}
+
+.dropdown-menu {
+  //background: none !important;
+  background-color: transparent !important;
+  text-transform: uppercase !important;
+}
+
+.navbar-collapse{
+  padding-left: 0 !important;
+}
+
+//цвета для меню
+.navbar-default .navbar-nav > li > a {
+  //text-shadow: 1px 1px white, 2px 2px #777;
+  transition: all 1s;
+  color: white !important;
+}
+
+.navbar-default .navbar-nav > li > a:hover {
+  //text-shadow: -1px -1px #000, 0 1px 0 #444;
+  color: #1A1A1A !important;
+}
+
+//цвета для телефона
+.navbar-default {
+  border-radius: 0;
+  .navbar-brand {
+    color: lightblue !important;
+  }
+}
+
+//цвета для подменю
+.dropdown-menu > li > a {
+  //text-shadow: -1px -1px #000, 0 1px 0 #444;
+  color: honeydew !important;
+  background-color: transparent !important;
+  //font-weight: bold !important;
+  //transition: all 1s;
+}
+.dropdown-menu > li > a:hover {
+  //text-shadow: -1px -1px #000, 0 1px 0 #444;
+  color: plum !important;
+  font-weight: bold;
+}
+
+.user-menu-style{
+  color: rgba(255, 255, 255, 0.75) !important;
+  background-color: rgba(0, 0, 0, 0.4) !important;
+}
+
+#navbar{
+    transition: top 0.5s
+}
+
+.dropdown-menu-vertical-design{
+  .dropdown-menu{
+    background-color: rgba(0, 0, 0, 0.7) !important;
+  }
+}
+
+.link-to-home-div{
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.navbar-toggle{
+  margin-top: -40px !important;
+}
+
+.inline-div-display{
+  top: -1px;
+  position: relative;
+  display: inline;
+  transition: all 1s;
+
+  .btn{
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+  }
+}
+
+.delivery-about-style {
+  color: black;
+  text-decoration: none;
+  &:hover {
+    color: black;
+  }
+}
+
+
+
+.buMenu-style{
+  position: fixed !important;
+  top: 0;
+  letter-spacing: 0.3px;
+  border: none !important;
+}
+
+/* Individual item */
+.bm-item {
+  display: inline-block;
+
+  /* Our sidebar item styling */
+  text-decoration: none;
+  margin-bottom: 10px;
+  color: #d1d1d1;
+  transition: color 0.2s;
+  a {
+    color: white;
+  }
+  outline: none !important;
+}
+
+/* Change color on hover */
+.bm-item:hover {
+  color: white;
+}
+
+/* The rest copied directly from react-burger-menu docs */
+
+/* Position and sizing of burger button */
+.bm-burger-button {
+  position: fixed;
+  width: 36px;
+  height: 30px;
+  left: 36px;
+  top: 10px;
+}
+
+/* Color/shape of burger icon bars */
+.bm-burger-bars {
+  background: #373a47;
+  //background: black;
+}
+
+/* Position and sizing of clickable cross button */
+.bm-cross-button {
+  height: 24px;
+  width: 24px;
+}
+
+/* Color/shape of close button cross */
+.bm-cross {
+  background: #bdc3c7;
+}
+
+/* General sidebar styles */
+.bm-menu {
+  //background: #373a47;
+  background: black;
+  padding: 2.5em 1.5em 0;
+  font-size: 1.15em;
+}
+
+/* Morph shape necessary with bubble or elastic */
+.bm-morph-shape {
+  fill: black;
+}
+
+/* Wrapper for item list */
+.bm-item-list {
+  color: #b8b7ad;
+}
+
+/* Styling of overlay */
+.bm-overlay {
+  background: transparent !important;
+}
+
+.burger-menu-to-top{
+  margin-top: 40px;
+}
+
+.burger-menu-to-bottom{
+  margin-bottom: 20px;
+}
+
+
+.under-header{
+  margin-bottom: 0 !important;
+  background-image: linear-gradient(to right bottom, #ffffff, #b9b9b9, #777777, #3b3b3b, #000000);
+  border: none !important;
+
+}
+
+@media (min-width: 1200px) {
+  .link-to-home-div {
+    margin-left: 350% !important;
+  }
+}
+
+.to_main_style{
+  display: block;
+  float: left;
+  color: whitesmoke;
+  margin-top: 8.5px;
+
+  &:hover{
+    color: hotpink;
+    text-decoration: none;
+}
+}
+
+.email-addition{
+  margin-top: 20px;
+}

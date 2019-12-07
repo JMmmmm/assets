@@ -1,0 +1,167 @@
+.beautiful-text-v1{
+  text-decoration: none;
+  display: block;
+  //margin: 11px 0 17px 0;
+  font-size: 180%;
+  line-height: 80px;
+  color: #888480;
+  text-shadow: 0 13.36px 8.896px #c4b59d,0 -2px 1px #fff;
+  letter-spacing: -3px;
+  text-align: left;
+  margin-left: 40px;
+}
+
+.beatiful-div-carousel .row{
+  width: 95%;
+}
+
+.beautiful-div-news{
+  margin: 0 auto;
+  padding: 30px;
+  transition: .3s ease;
+  box-shadow: 0 1px 1px rgba(247, 239, 239, 0.3);
+
+  p{
+    span{
+      font-size: 14px;
+    }
+  }
+}
+
+.beatiful-div-carousel-category{
+  .alice-carousel__wrapper{
+    margin-left: 0 !important;
+  }
+}
+
+.beautiful-div-title{
+  margin-top: 10px;
+  width: 100%;
+  padding: 3%;
+  z-index: 112;
+  //padding: 30px;
+  transition: .3s ease;
+  box-shadow: 0 5px 20px rgba(0,0,0,.8);
+  transform: translateY(-10px) scale(1.02);
+  .entry-title{
+    background-position: -100% 0;
+  }
+}
+
+//.alice-carousel__prev-btn{
+//  display: none;
+//}
+//
+//.alice-carousel__next-btn{
+//  display: none;
+//}
+
+.alice-carousel__stage{
+  margin-left: 50px;
+}
+
+.alice-carousel{
+  margin-top: 50px;
+  padding-top: 20px;
+}
+
+@media(max-width:517px) {
+  .alice-carousel__stage{
+    margin-left: 0;
+    left: 25%;
+  }
+
+  .beatiful-div-carousel-category{
+    .alice-carousel__wrapper{
+      margin-left: -20%;
+    }
+  }
+
+  div.style-five {
+    height: 55px !important;
+    background-size: 10% 55px !important;
+    display: none;
+  }
+  hr.style-five
+  {
+    margin-top: -14px !important;
+  }
+
+  .carousel-bottom-style{
+    display: none;
+  }
+  .carousel-catalog{
+    display: none;
+  }
+  .carousel-catalog-alternative{
+    display: block;
+    //height: 100px;
+  }
+}
+
+.alice-carousel__dots{
+  margin: 0 !important;
+}
+
+div.style-five {
+  height: 115px;
+  background: #fff url(/storage/site/hr_picture.png) no-repeat scroll left;
+  background-size: 10% 115px;
+  margin-left: 20px;
+  margin-top: -70px;
+}
+hr.style-five
+{
+  width: 83%;
+  margin-top: -30px;
+  background: linear-gradient(to right, pink, rgba(132,143,133,0.77));
+  border-bottom: 2px linear-gradient(to right, pink, rgba(132,143,133,0.77));
+  margin-left: 12%;
+}
+
+
+@media(min-width:768px) {
+  .carousel-bottom-style{
+    margin-top: 80px;
+  }
+}
+
+.carousel-bottom-style{
+  background: #fff url(/storage/site/pink_left_arrow.png) no-repeat;
+  height: 100px;
+  background-size: 100px 100px;
+  width: 100%;
+  &:hover{
+    cursor: pointer;
+  }
+  -o-transform: rotate(180deg);
+  -ms-transform: rotate(180deg);
+  -moz-transform: rotate(180deg);
+  -webkit-transform: rotate(180deg);
+  transform: rotate(180deg);
+}
+
+.carousel-bottom-style-right{
+  margin-right: 20px;
+  -o-transform: rotate(0deg);
+  -ms-transform: rotate(0deg);
+  -moz-transform: rotate(0deg);
+  -webkit-transform: rotate(0deg);
+  transform: rotate(0deg);
+}
+
+.carousel-catalog{
+  padding-top: 50px;
+  background-color: black;
+}
+
+@media(min-width:945px) {
+  .beatifull-div-left{
+    margin-left: 5%;
+  }
+}
+
+.beatifull-div-left{
+  margin-top: 90px;
+  margin-bottom: 70px;
+}
