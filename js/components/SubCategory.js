@@ -21,69 +21,47 @@ import TextField from '@material-ui/core/TextField';
 
 class SubCategory extends React.Component{
     state = {
+        //system______________________________________________________________________________________
+        isLoading: false,
+        activePage: 1,
+
+        //data______________________________________________________________________________________
+        products: [],
+        originalProducts: [],
+
+        subCategories: [],
+        brands: [],
+
+        //filters______________________________________________________________________________________
+        rememberCategories: [],
+        rememberBrands: [],
+
+        //sort______________________________________________________________________________________
         sortBySelected: NEW,
         sortByOptions: [PRICE_LOW_TO_HIGH, PRICE_HIGH_TO_LOW, RATINGS],
-        activePage: 1,
+
+        // additions______________________________________________________________________________________
+        descImg: '',
+        categoryImg: '',
+        categoryName: '',
+
+        //old______________________________________________________________________________________
         totalItemsCount: 55,
         advancedFilterModalShow: false,
-        products: [],
-        isLoading: false,
-        originalProducts: [],
         filterApplied: undefined,
-        categories: [],
-        rememberCategories: [],
-        brands: [],
-        rememberBrands: [],
-        categoryName: '',
-        descImg: '',
-        subCategories: [],
-        categoryImg: '',
     };
 
-    componentDidMount(){
-        let category = this.props.match.params.category;
+    //_____________________________________________________________________________________________________
+    // Loading
+
+    // fetch initial data in this function here
+    commonLoadDataFunction = (category) => {
         const url = searchCategoriesAPI(category);
         const access_token = window.localStorage.getItem(ACCESS_TOKEN);
         const headers = {Accept: "application/json", Authorization: `Bearer ${access_token}`};
-        // fetch initial data in this function here
         this.setState(() => ({isLoading: true}));
         axios.get(url, {headers})
             .then((response) => (this.setState(
-            {
-                originalProducts: response.data.products,
-                products: response.data.products,
-                totalItemsCount: response.data.products.length,
-                isLoading: false,
-                activePage: 1,
-                subCategories: response.data.categories,
-                brands: response.data.brands,
-                categoryName: response.data.categoryName,
-                descImg: response.data.desc_img,
-                categoryImg: response.data.category_img,
-            }
-        )))
-            .catch((error) => {
-                console.log(error);
-                window.localStorage.removeItem(ACCESS_TOKEN);
-                this.props.dispatch(logoutUser());
-                // window.location.reload(true);
-                window.location.assign("/");
-            });
-        setTimeout(() => {
-            this.sortByChange(PRICE_LOW_TO_HIGH);
-        }, 500);
-    }
-
-    componentWillReceiveProps(nextProps){
-        let currentCategory = this.props.match.params.category;
-        let newCategory = nextProps.match.params.category;
-        if((currentCategory !== newCategory)){
-            const url = searchCategoriesAPI(newCategory);
-            const access_token = window.localStorage.getItem(ACCESS_TOKEN);
-            const headers = {Accept: "application/json", Authorization: `Bearer ${access_token}`};
-            this.setState(() => ({isLoading: true}));
-            axios.get(url, {headers})
-                .then((response) => (this.setState(
                 {
                     originalProducts: response.data.products,
                     products: response.data.products,
@@ -97,83 +75,41 @@ class SubCategory extends React.Component{
                     categoryImg: response.data.category_img,
                 }
             )))
-                .catch((error) => {
-                    console.log(error);
-                    window.localStorage.removeItem(ACCESS_TOKEN);
-                    this.props.dispatch(logoutUser());
-                    // window.location.reload(true);
-                    window.location.assign("/");
-                });
+            .catch((error) => {
+                console.log(error);
+                window.localStorage.removeItem(ACCESS_TOKEN);
+                this.props.dispatch(logoutUser());
+                // window.location.reload(true);
+                window.location.assign("/");
+            });
+    };
+
+    componentDidMount(){
+        let category = this.props.match.params.category;
+        this.commonLoadDataFunction(category);
+        setTimeout(() => {
+            this.sortByChange(PRICE_LOW_TO_HIGH);
+        }, 500);
+    }
+
+    componentWillReceiveProps(nextProps){
+        let currentCategory = this.props.match.params.category;
+        let newCategory = nextProps.match.params.category;
+        if((currentCategory !== newCategory)){
+            this.commonLoadDataFunction(newCategory);
         }
         setTimeout(() => {
             this.sortByChange(PRICE_LOW_TO_HIGH);
         }, 500);
     }
 
+    //_______________________________________________________________________________________________________
+
+    // System
+
     handlePageChange = (pageNumber) => {
         window.scrollTo(0, 0);
         this.setState({activePage: pageNumber});
-    };
-
-    sortByChange = (selectedSortBy) => {
-        switch(selectedSortBy){
-            case PRICE_LOW_TO_HIGH:
-                this.setState((prevState) => {
-                    return {
-                        sortByOptions:
-                            prevState.sortByOptions.concat(prevState.sortBySelected).filter((menuItem) => (
-                                menuItem !== PRICE_LOW_TO_HIGH
-                            )),
-                        sortBySelected: PRICE_LOW_TO_HIGH,
-                        products: prevState.products.sort((a, b) => {
-                            return a.price > b.price ? 1 : -1;
-                        })
-                    }
-                });
-                break;
-            case PRICE_HIGH_TO_LOW:
-                this.setState((prevState) => {
-                    return {
-                        sortByOptions:
-                            prevState.sortByOptions.concat(prevState.sortBySelected).filter((menuItem) => (
-                                menuItem !== PRICE_HIGH_TO_LOW
-                            )),
-                        sortBySelected: PRICE_HIGH_TO_LOW,
-                        products: prevState.products.sort((a, b) => {
-                            return a.price < b.price ? 1 : -1;
-                        })
-                    }
-                });
-                break;
-            case RATINGS:
-                this.setState((prevState) => {
-                    return {
-                        sortByOptions:
-                            prevState.sortByOptions.concat(prevState.sortBySelected).filter((menuItem) => (
-                                menuItem !== RATINGS
-                            )),
-                        sortBySelected: RATINGS,
-                        products: prevState.products.sort((a, b) => {
-                            return a.ratings < b.ratings ? 1 : -1;
-                        })
-                    }
-                });
-                break;
-            default:
-                this.setState((prevState) => {
-                    return {
-                        sortByOptions:
-                            prevState.sortByOptions.concat(prevState.sortBySelected).filter((menuItem) => (
-                                menuItem !== NEW
-                            )),
-                        sortBySelected: NEW,
-                        products: prevState.products.sort((a, b) => {
-                            return a.timeStamp < b.timeStamp ? 1 : -1;
-                        })
-                    }
-                });
-                break;
-        }
     };
 
     advancedFiltersModalShow = () => {
@@ -188,6 +124,148 @@ class SubCategory extends React.Component{
     advancedFiltersModalHide = () => {
         this.setState(() => ({advancedFilterModalShow: false}));
     };
+
+    //_______________________________________________________________________________________________________
+
+    // Business-logic
+
+    // Sort
+
+    sortByParam = (param, sortTypeFunction) => {
+        this.setState((prevState) => {
+            console.log('boy');
+            return {
+                sortByOptions:
+                    prevState.sortByOptions.concat(prevState.sortBySelected).filter((menuItem) => (
+                        menuItem !== param
+                    )),
+                sortBySelected: param,
+                products: prevState.products.sort((a, b) => {
+                    return sortTypeFunction(a, b);
+                })
+            }
+        });
+    };
+
+    sortByChange = (selectedSortBy) => {
+        switch(selectedSortBy){
+            case PRICE_LOW_TO_HIGH:
+                this.sortByParam(PRICE_LOW_TO_HIGH, function sort(a, b) {
+                    return a.price > b.price ? 1 : -1;
+                });
+                break;
+            case PRICE_HIGH_TO_LOW:
+                this.sortByParam(PRICE_HIGH_TO_LOW, function sort(a, b) {
+                    return a.price < b.price ? 1 : -1;
+                });
+                break;
+            case RATINGS:
+                this.sortByParam(RATINGS, function sort(a, b) {
+                    return a.ratings < b.ratings ? 1 : -1;
+                });
+                break;
+            default:
+                this.sortByParam(NEW, function sort(a, b) {
+                    return a.timeStamp < b.timeStamp ? 1 : -1;
+                });
+                break;
+        }
+    };
+
+    setArrowType = (selected) => {
+        if (selected == PRICE_LOW_TO_HIGH) {
+            return <Glyphicon glyph={"arrow-up"}/>;
+        } else if(selected == PRICE_HIGH_TO_LOW) {
+            return <Glyphicon glyph={"arrow-down"}/>;
+        }
+    };
+
+    //_______________________________________________________________________________________________________
+
+    // Business-logic
+
+    // Filtration
+
+    applySubCategory = (subCategory, checked) => {
+        if (checked.target.checked) {
+            this.state.rememberCategories.push(subCategory);
+        } else {
+            this.denySubCategory(subCategory)
+        }
+        this.applyFilter(subCategory, checked);
+    };
+
+    applyBrand = (brand, checked) => {
+        if (checked.target.checked) {
+            this.state.rememberBrands.push(brand);
+        } else {
+            this.denyBrand(brand);
+        }
+        this.applyFilter(brand, checked);
+    };
+
+    denySubCategory = (subCategory) => {
+        this.state.rememberCategories = this.state.rememberCategories.filter((category) => {
+            return subCategory !== category;
+        })
+    };
+
+    denyBrand = (brand) => {
+        this.state.rememberBrands = this.state.rememberBrands.filter((brandOs) => {
+            return brand !== brandOs;
+        })
+    };
+
+    // Common filtration
+
+    applyFilter = (filter, checked) => {
+        if (checked.target.checked) {
+            this.makeExtraFilter();
+        } else {
+            if (this.state.rememberCategories.length === 0 && this.state.rememberBrands.length === 0) {
+                this.setState(() => ({
+                    products: this.state.originalProducts,
+                    filterApplied: undefined,
+                    totalItemsCount: this.state.originalProducts.length,
+                }));
+            } else {
+                this.makeExtraFilter();
+            }
+        }
+    };
+
+    makeExtraFilter  = () => {
+        const products = this.state.products.filter((product) => {
+            let hasCategory = this.isNeededProduct(this.state.rememberCategories, product.category);
+            let hasBrand    = this.isNeededProduct(this.state.rememberBrands, product.brand);
+
+            return hasCategory && hasBrand;
+        });
+
+        this.setState(() => ({
+            products,
+            filterApplied: true,
+            totalItemsCount: products.length,
+            activePage: 1
+        }));
+    };
+
+    isNeededProduct = (rememberObject, searchFilter) => {
+        let isNeededProduct = true;
+        if (rememberObject.length !== 0) {
+            isNeededProduct = false;
+            rememberObject.forEach((filter) =>
+            {
+                if (searchFilter === filter) {
+                    isNeededProduct = true;
+                }
+            });
+        }
+
+        return isNeededProduct;
+    };
+
+
 
     applyFilters = ({ratings = ANY, from, to, fast_shipping = ANY}) => {
         const {sortBySelected} = this.state;
@@ -249,116 +327,6 @@ class SubCategory extends React.Component{
         }));
     };
 
-    denySubCategory = (subCategory) => {
-        this.state.rememberCategories = this.state.rememberCategories.filter((category) => {
-            console.log(subCategory === category);
-            return subCategory !== category;
-        })
-    };
-
-    applySubCategory = (subCategory, checked) => {
-        console.log(subCategory);
-        if (checked.target.checked) {
-            this.state.rememberCategories.push(subCategory);
-            this.makeExtraFilter();
-        } else {
-            this.denySubCategory(subCategory);
-            if (this.state.rememberCategories.length === 0 && this.state.rememberBrands.length === 0) {
-                this.setState(() => ({
-                    products: this.state.originalProducts,
-                    filterApplied: undefined,
-                    totalItemsCount: this.state.originalProducts.length,
-                }));
-            } else {
-                console.log(this.state.rememberCategories.length);
-                this.makeExtraFilter();
-            }
-        }
-    };
-
-    applyBrand = (brand, checked) => {
-        console.log(brand);
-        if (checked.target.checked) {
-            this.state.rememberBrands.push(brand);
-            this.makeExtraFilter();
-        } else {
-            this.denyBrand(brand);
-            if (this.state.rememberCategories.length === 0 && this.state.rememberBrands.length === 0) {
-                this.setState(() => ({
-                    products: this.state.originalProducts,
-                    filterApplied: undefined,
-                    totalItemsCount: this.state.originalProducts.length,
-                }));
-            } else {
-                this.makeExtraFilter();
-            }
-        }
-    };
-
-    makeExtraFilter  = () => {
-        const {sortBySelected} = this.state;
-        const products = this.state.originalProducts.filter((product) => {
-            let hasCategory = true;
-            if (this.state.rememberCategories.length !== 0) {
-                hasCategory = false;
-                this.state.rememberCategories.forEach((category) =>
-                {
-                    if (product.category === category) {
-                        hasCategory = true;
-                    }
-                });
-            }
-
-            let hasBrand = true;
-            if (this.state.rememberBrands.length !== 0) {
-                hasBrand = false;
-                this.state.rememberBrands.forEach((brand) =>
-                {
-                    if (product.brand === brand) {
-                        hasBrand = true;
-                    }
-                });
-            }
-
-            return hasCategory && hasBrand;
-        }).sort((a, b) => {
-            if(sortBySelected === RATINGS){
-                return a.ratings < b.ratings ? 1 : -1;
-            }
-            else if(sortBySelected === PRICE_LOW_TO_HIGH){
-                return a.price > b.price ? 1 : -1;
-            }
-            else if(sortBySelected === PRICE_HIGH_TO_LOW){
-                return a.price < b.price ? 1 : -1;
-            }
-            else{
-                return a.timeStamp < b.timeStamp ? 1 : -1;
-            }
-        });
-
-        this.setState(() => ({
-            products,
-            filterApplied: true,
-            totalItemsCount: products.length,
-            activePage: 1
-        }));
-    };
-
-    denyBrand = (brand) => {
-        this.state.rememberBrands = this.state.rememberBrands.filter((brandOs) => {
-            console.log(brand === brandOs);
-            return brand !== brandOs;
-        })
-    };
-
-    setArrowType = (selected) => {
-        if (selected == PRICE_LOW_TO_HIGH) {
-            return <Glyphicon glyph={"arrow-up"}/>;
-        } else if(selected == PRICE_HIGH_TO_LOW) {
-            return <Glyphicon glyph={"arrow-down"}/>;
-        }
-    }
-
     clearFilters = () => {
         const {sortBySelected} = this.state;
         const products = this.state.originalProducts.sort((a, b) => {
@@ -396,7 +364,6 @@ class SubCategory extends React.Component{
         const {activePage, products} = this.state;
         const end = (activePage*12) - 1;
         const start = end - 11;
-        // const end = products.length;
         for (let i = start; i <= end; i++ ) {
             if(i < products.length) {
 
@@ -417,45 +384,6 @@ class SubCategory extends React.Component{
             }
         }
 
-        let newItems = [];
-        let preEnd = items.length - 1;
-        let itemsEnd = items.length;
-        console.log(itemsEnd);
-
-        if (width < 991) {
-            for (let index = 0; index <= itemsEnd; index++) {
-                let realIndex = index + 1;
-
-                if ((itemsEnd % 2 !== 0) && (realIndex === itemsEnd)) {
-                    newItems.push([items[index]]);
-                    break;
-                } else {
-                    if (realIndex % 2 === 0) {
-                        newItems.push([items[index - 1], items[index]]);
-                    }
-                }
-            }
-
-        } else {
-            for (let index = 0; index <= itemsEnd; index++ ) {
-                let realIndex = index + 1;
-
-                if (itemsEnd % 3 === 0) {
-                    if (realIndex % 3 === 0) {
-                        newItems.push([items[index - 2], items[index - 1], items[index]]);
-                    }
-                } else {
-                    if (realIndex % 3 === 0) {
-                        newItems.push([items[index - 2], items[index - 1], items[index]]);
-                    } else if (realIndex === preEnd) {
-                        newItems.push([items[index], items[index + 1]]);
-                        break;
-                    } else if (realIndex === itemsEnd) {
-                        newItems.push([items[index]]);
-                    }
-                }
-            }
-        }
 
         let priceArrow = '';
         if (this.state.sortBySelected == PRICE_LOW_TO_HIGH) {
@@ -531,18 +459,11 @@ class SubCategory extends React.Component{
                                 </div>
                             </Col>
                         </Row>
+
+                        {/*Фильтры_________________________________________________________________________________*/}
+
                         <Row>
                             <Col lg={3} md={3} sm={5} xsHidden>
-                                {/*<h4 className={"advanced-filter-heading"}>{this.state.sortBySelected} {priceArrow}</h4>*/}
-                                {/*<Row>*/}
-                                    {/*<Col lg={12} md={12}>*/}
-                                        {/*<AdvancedFilters*/}
-                                            {/*applyFilters={this.applyFilters}*/}
-                                            {/*clearFilters={this.clearFilters}*/}
-                                        {/*/>*/}
-                                    {/*</Col>*/}
-                                {/*</Row>*/}
-
                                 <Row>
                                     <Col lg={12} md={12}>
                                         <form noValidate autoComplete="off">
@@ -617,15 +538,18 @@ class SubCategory extends React.Component{
                                     </Col>
                                 </Row>
                             </Col>
-                            <Col lg={9} md={9} sm={7} xsOffset={1} smOffset={0} mdOffset={0} lgOffset={0}>
 
+
+                            {/*Товары_________________________________________________________________________________*/}
+
+                            <Col lg={9} md={9} sm={7} xsOffset={1} smOffset={0} mdOffset={0} lgOffset={0}>
                                 {products.length > 0 ? <div className={'category-search-style category-color-style'}>
                                         <div>
                                             <ListGroup className={'search-results-list'}>
-                                                {newItems.map((item, index) => (
-                                                    <Row key={index}>
+                                                {items.map((item, index) => (
+                                                    <div className={'beautiful-div-product'} key={index}>
                                                         {item}
-                                                    </Row>
+                                                    </div>
                                                 ))}
                                             </ListGroup>
                                         </div>

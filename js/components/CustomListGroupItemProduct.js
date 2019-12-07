@@ -42,9 +42,8 @@ class CustomListGroupItemProduct extends React.Component{
 
     render() {
         return (
-            <Col lg={3} md={4} sm={4} xs={6}>
 
-            <li className="list-group-item beautiful-div-product" onClick={() => this.viewClickHandler(`/product/${this.props.productID}`)}>
+            <li className="list-group-item" onClick={() => this.viewClickHandler(`/product/${this.props.productID}`)}>
                 {/*<div className={"media-left"}>*/}
                 {/*</div>*/}
                 <div className={"media-body"}>
@@ -114,7 +113,6 @@ class CustomListGroupItemProduct extends React.Component{
 
                 </div>
             </li>
-            </Col>
         )
     }
 }
